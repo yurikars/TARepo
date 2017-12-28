@@ -17,10 +17,13 @@ public class PointTest {
         double notRoundedlineLenght = Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2));
         double roundedLineLenght = Math.round(Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2)));
 
-        System.out.println(notRoundedlineLenght);
-        System.out.println(roundedLineLenght);
+        System.out.println("Длина отрезка до без округления равна: " + notRoundedlineLenght);
+        System.out.println("Длина отрезка с округлением равна: " + roundedLineLenght);
 
-        Assert.assertEquals(roundedLineLenght,4.0);
-        Assert.assertNotEquals(notRoundedlineLenght,4);
+        // проверка того, что округлённое значение длины отрезка равно 4
+         Assert.assertEquals(roundedLineLenght,4.0);
+
+        // проверка того, что не округлённое значение длины отрезка не равно 4
+        Assert.assertNotEquals(notRoundedlineLenght,4.0);
     }
 }
