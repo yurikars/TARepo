@@ -8,5 +8,5 @@ public class Runner {
 
         System.out.println("Расстояние между точками p1 и p2 без округления равно: " + p1.distanceBetweenTwoPoints(p2));
 
-    }
+        }
     }
