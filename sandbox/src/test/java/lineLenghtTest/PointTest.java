@@ -8,18 +8,6 @@ import org.testng.annotations.Test;
 
 public class PointTest {
 
-    public double x;
-    public double y;
-
-    public PointTest(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public double distanceBetweenTwoPoints(PointTest p) {
-        return Math.sqrt(Math.pow((this.x - p.x), 2) + Math.pow((this.y - p.y), 2));
-    }
-
     @Test
     public void firstTest (){
 
@@ -32,7 +20,7 @@ public class PointTest {
         System.out.println(notRoundedlineLenght);
         System.out.println(roundedLineLenght);
 
-        Assert.assertEquals(roundedLineLenght,4);
+        Assert.assertEquals(roundedLineLenght,4.0);
         Assert.assertNotEquals(notRoundedlineLenght,4);
     }
 }
