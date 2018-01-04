@@ -1,6 +1,6 @@
 package stqa.addressbook;
 
-public class UserData {
+public class ContactData {
     private final String firstName;
     private final String middleName;
     private final String lastName;
@@ -12,7 +12,7 @@ public class UserData {
     private final String employment;
     private final String email;
 
-    public UserData(String firstName, String middleName, String lastName, String nickName, String companyName, String address, String mobilePhone, String work, String employment, String email) {
+    public ContactData(String firstName, String middleName, String lastName, String nickName, String companyName, String address, String mobilePhone, String work, String employment, String email) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
