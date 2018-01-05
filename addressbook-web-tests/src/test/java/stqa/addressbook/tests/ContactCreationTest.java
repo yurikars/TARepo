@@ -1,15 +1,16 @@
-package stqa.addressbook;
+package stqa.addressbook.tests;
 
 import org.testng.annotations.Test;
+import stqa.addressbook.model.ContactData;
 
 public class ContactCreationTest extends TestBase {
 
     @Test
     public void testContactCreation () {
 
-        gotoUserPage();
+        app.gotoUserPage();
 
-        fillUserCreationForm(new ContactData("Name",
+        app.fillUserCreationForm(new ContactData("Name",
                                           "MiddleName",
                                           "LastName",
                                           "nick",
@@ -20,7 +21,7 @@ public class ContactCreationTest extends TestBase {
                                           "freelance",
                                           "some@mail.com"));
 
-        submitUserCreation();
+        app.submitUserCreation();
     }
 
 }
