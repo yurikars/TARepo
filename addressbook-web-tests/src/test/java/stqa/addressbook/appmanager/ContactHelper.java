@@ -32,10 +32,21 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-    public void selectContact (){
+    public void editContact(){
         click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
     public void submitUserModification(){
         click(By.xpath("//div[@id='content']/form[1]/input[22]"));
     }
+    // не знаю как в этом случае правильно подобрать локатор так, чтобы элемент находился авмтоматически
+    // в данном случае элемент найдётся только в случае наличия элемента с id прописанным в этом методе
+    public void selectContact(){
+        click(By.id("7"));
+    }
+    public void deleteContact(){
+        click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    }
+    public void confirmContactDeletion(){
+       alertAccept();
+   }
 }
