@@ -38,10 +38,8 @@ public class ContactHelper extends HelperBase {
     public void submitUserModification(){
         click(By.xpath("//div[@id='content']/form[1]/input[22]"));
     }
-    // не знаю как в этом случае правильно подобрать локатор так, чтобы элемент находился авмтоматически
-    // в данном случае элемент найдётся только в случае наличия элемента с id прописанным в этом методе
     public void selectContact(){
-        click(By.id("7"));
+        click(By.cssSelector("input[type='checkbox']"));
     }
     public void deleteContact(){
         click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
