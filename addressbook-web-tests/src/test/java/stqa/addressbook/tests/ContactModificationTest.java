@@ -18,7 +18,9 @@ public class ContactModificationTest extends TestBase {
                                                                     "UpdatedMobilePhone",
                                                                     "UpdatedWork",
                                                                     "UpdatedEmployment",
-                                                                    "UpdatedEmail"));
+                                                                    "UpdatedEmail",
+                                                                    null),
+                                                                    false);
         app.getContactHelper().submitUserModification();
         app.getContactHelper().returnToUserPage();
 

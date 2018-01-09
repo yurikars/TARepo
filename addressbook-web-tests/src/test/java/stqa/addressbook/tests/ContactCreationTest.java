@@ -10,7 +10,8 @@ public class ContactCreationTest extends TestBase {
 
         app.getContactHelper().returnToUserPage();
 
-        app.getContactHelper().fillUserCreationForm(new ContactData("Name",
+        app.getContactHelper().fillUserCreationForm(new ContactData(
+                                          "Name",
                                           "MiddleName",
                                           "LastName",
                                           "nick",
@@ -19,7 +20,9 @@ public class ContactCreationTest extends TestBase {
                                           "+375297776655",
                                           "noWork",
                                           "freelance",
-                                          "some@mail.com"));
+                                          "some@mail.com",
+                                          "test1"),
+                                          true);
 
         app.getContactHelper().submitUserCreation();
     }
