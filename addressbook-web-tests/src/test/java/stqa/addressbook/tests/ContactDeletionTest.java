@@ -8,7 +8,7 @@ public class ContactDeletionTest  extends TestBase  {
     @Test
     public void testContactDeletion() throws InterruptedException {
 
-        app.getNavigationHelper().gotoHomePage();
+        app.getNavigationHelper().gotoContactPage();
         if (! app.getContactHelper().isThereAContact()){
             app.getContactHelper().createContact((new ContactData(
                             "Name",
