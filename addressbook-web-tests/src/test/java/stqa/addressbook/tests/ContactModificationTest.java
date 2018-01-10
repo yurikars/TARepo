@@ -22,7 +22,7 @@ public class ContactModificationTest extends TestBase {
                                                                     null),
                                                                     false);
         app.getContactHelper().submitUserModification();
-        app.getContactHelper().returnToUserPage();
+        app.getContactHelper().returnToUserCreationForm();
 
     }
 }
