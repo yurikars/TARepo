@@ -1,7 +1,6 @@
 package stqa.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -32,11 +31,11 @@ public class ContactHelper extends HelperBase {
         }
     }
 
-    public void submitUserCreation() {
+    public void submitContactCreation() {
        click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-    public void returnToUserCreationForm() {
+    public void returnToContactCreationForm() {
         click(By.linkText("add new"));
     }
 
@@ -47,7 +46,7 @@ public class ContactHelper extends HelperBase {
     public void editContact(){
         click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
-    public void submitUserModification(){
+    public void submitContactModification(){
         click(By.xpath("//div[@id='content']/form[1]/input[22]"));
     }
     public void selectContact(){
@@ -67,7 +66,7 @@ public class ContactHelper extends HelperBase {
     public void createContact(ContactData contact){
        initContactCreation();
        fillUserCreationForm(contact,true);
-       submitUserCreation();
+       submitContactCreation();
    }
 
    public boolean isThereAContact(){

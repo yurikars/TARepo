@@ -23,7 +23,6 @@ public class ContactDeletionTest  extends TestBase  {
                             "some@mail.com",
                             "test1")));
             }
-
         app.getContactHelper().returnToHomePage();
         Thread.sleep(3000);
         app.getContactHelper().selectContact();

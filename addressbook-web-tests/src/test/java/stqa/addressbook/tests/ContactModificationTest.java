@@ -6,8 +6,23 @@ import stqa.addressbook.model.ContactData;
 public class ContactModificationTest extends TestBase {
 
     @Test
-    public void testContactModification (){
+    public void testContactModification () throws InterruptedException {
 
+        if (! app.getContactHelper().isThereAContact()){
+            app.getContactHelper().createContact((new ContactData(
+                    "Name",
+                    "MiddleName",
+                    "LastName",
+                    "nick",
+                    "guglius",
+                    "Bogota",
+                    "+375297776655",
+                    "noWork",
+                    "freelance",
+                    "some@mail.com",
+                    "test1")));
+        }
+        Thread.sleep(3000);
         app.getContactHelper().editContact();
         app.getContactHelper().fillUserCreationForm(new ContactData("UpdatedFirstName",
                                                                     "UpdatedMiddleName",
@@ -21,8 +36,8 @@ public class ContactModificationTest extends TestBase {
                                                                     "UpdatedEmail",
                                                                     null),
                                                                     false);
-        app.getContactHelper().submitUserModification();
-        app.getContactHelper().returnToUserCreationForm();
+        app.getContactHelper().submitContactModification();
+        app.getContactHelper().returnToContactCreationForm();
 
     }
 }
