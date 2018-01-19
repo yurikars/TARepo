@@ -3,6 +3,8 @@ package stqa.addressbook.tests;
 import org.testng.annotations.Test;
 import stqa.addressbook.model.ContactData;
 
+import java.util.concurrent.TimeUnit;
+
 public class ContactDeletionTest  extends TestBase  {
 
     @Test
@@ -24,6 +26,7 @@ public class ContactDeletionTest  extends TestBase  {
                             "test1")));
             }
         app.getContactHelper().returnToHomePage();
+
         Thread.sleep(3000);
         app.getContactHelper().selectContact();
         app.getContactHelper().deleteContact();

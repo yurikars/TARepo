@@ -2,9 +2,13 @@ package stqa.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import stqa.addressbook.model.ContactData;
+
+import java.util.concurrent.TimeUnit;
 
 public class ContactHelper extends HelperBase {
 
@@ -63,7 +67,7 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.linkText("add new")).click();
    }
 
-    public void createContact(ContactData contact){
+   public void createContact(ContactData contact){
        initContactCreation();
        fillUserCreationForm(contact,true);
        submitContactCreation();
@@ -72,5 +76,6 @@ public class ContactHelper extends HelperBase {
    public boolean isThereAContact(){
         return isElementPresent(By.name("selected[]"));
    }
+
    }
 
