@@ -3,12 +3,15 @@ package stqa.addressbook.tests;
 import org.testng.annotations.Test;
 import stqa.addressbook.model.ContactData;
 
+import java.util.List;
+
 public class ContactCreationTest extends TestBase {
 
     @Test
     public void testContactCreation () {
 
         app.getNavigationHelper().gotoContactPage();
+        List<ContactData> before = app.getContactHelper().getContactList();
 
         app.getContactHelper().fillUserCreationForm(new ContactData(
                                           "Name",

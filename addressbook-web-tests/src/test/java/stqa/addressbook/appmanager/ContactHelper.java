@@ -7,7 +7,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import stqa.addressbook.model.ContactData;
+import stqa.addressbook.model.GroupData;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ContactHelper extends HelperBase {
@@ -76,6 +79,29 @@ public class ContactHelper extends HelperBase {
    public boolean isThereAContact(){
         return isElementPresent(By.name("selected[]"));
    }
+
+   public List<ContactData> getContactList(){
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<WebElement> elements = wd.findElements(By.className("entry"));
+        for (WebElement element : elements){
+            String lastName = element.findElement(By.xpath("//td[2]")).getText();
+            String firstName = element.findElement(By.xpath("//td[2]")).getText();
+            ContactData contact = new ContactData( lastName,
+                                                   firstName,
+                                                  null,
+                                                  null,
+                                                  null,
+                                                  null,
+                                                  null,
+                                                  null,
+                                                  null,
+                                                  null,
+                                                  null );
+            contacts.add(contact);
+        }
+        return contacts;
+   }
+
 
    }
 
