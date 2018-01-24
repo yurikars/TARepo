@@ -1,8 +1,10 @@
 package stqa.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import stqa.addressbook.model.ContactData;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class ContactDeletionTest  extends TestBase  {
@@ -25,12 +27,22 @@ public class ContactDeletionTest  extends TestBase  {
                             "some@mail.com",
                             "test1")));
             }
-        app.getContactHelper().returnToHomePage();
-
         Thread.sleep(3000);
-        app.getContactHelper().selectContact();
+        List<ContactData> before = app.getContactHelper().getContactList();
+        app.getContactHelper().selectContact(before.size() - 1);
         app.getContactHelper().deleteContact();
         app.getContactHelper().confirmContactDeletion();
+        app.getContactHelper().returnToHomePage();
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(after.size(), before.size() - 1);
+
+        before.remove(before.size() - 1);
+        Assert.assertEquals(before,after);
+
+//        Thread.sleep(3000);
+//        app.getContactHelper().selectContact();
+//        app.getContactHelper().deleteContact();
+//        app.getContactHelper().confirmContactDeletion();
     }
 
 }

@@ -31,11 +31,11 @@ public class ContactHelper extends HelperBase {
         type(By.name("work"),contactData.getEmployment());
         type(By.name("email"),contactData.getEmail());
 
-        if (creation){
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-        } else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
+//        if (creation){
+//            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+//        } else {
+//            Assert.assertFalse(isElementPresent(By.name("new_group")));
+//        }
     }
 
     public void submitContactCreation() {
@@ -50,13 +50,13 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.linkText("home"));
     }
 
-    public void editContact(){
+    public void editContact(int index){
         click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
     public void submitContactModification(){
         click(By.xpath("//div[@id='content']/form[1]/input[22]"));
     }
-    public void selectContact(){
+    public void selectContact(int index){
         click(By.cssSelector("input[type='checkbox']"));
     }
     public void deleteContact(){
@@ -86,7 +86,8 @@ public class ContactHelper extends HelperBase {
         for (WebElement element : elements){
             String lastName = element.findElement(By.xpath("//td[2]")).getText();
             String firstName = element.findElement(By.xpath("//td[2]")).getText();
-            ContactData contact = new ContactData( lastName,
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            ContactData contact = new ContactData(id, lastName,
                                                    firstName,
                                                   null,
                                                   null,
@@ -101,7 +102,5 @@ public class ContactHelper extends HelperBase {
         }
         return contacts;
    }
-
-
    }
 
