@@ -3,17 +3,16 @@ package stqa.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import stqa.addressbook.model.ContactData;
-import stqa.addressbook.model.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
 
 public class ContactModificationTest extends TestBase {
 
-    @Test
+    @Test (enabled = false)
     public void testContactModification () throws InterruptedException {
 
-        app.getNavigationHelper().gotoContactPage();
+        app.goTo().gotoContactPage();
         if (! app.getContactHelper().isThereAContact()){
             app.getContactHelper().createContact((new ContactData(
                     "Name",

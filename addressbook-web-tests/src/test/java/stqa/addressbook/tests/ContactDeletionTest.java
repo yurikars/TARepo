@@ -5,14 +5,13 @@ import org.testng.annotations.Test;
 import stqa.addressbook.model.ContactData;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class ContactDeletionTest  extends TestBase  {
 
-    @Test
+    @Test (enabled = false)
     public void testContactDeletion() throws InterruptedException {
 
-        app.getNavigationHelper().gotoContactPage();
+        app.goTo().gotoContactPage();
         if (! app.getContactHelper().isThereAContact()){
             app.getContactHelper().createContact((new ContactData(
                             "Name",

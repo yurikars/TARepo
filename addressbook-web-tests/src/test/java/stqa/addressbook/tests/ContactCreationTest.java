@@ -8,10 +8,10 @@ import java.util.List;
 
 public class ContactCreationTest extends TestBase {
 
-    @Test
+    @Test (enabled = false)
     public void testContactCreation () {
 
-        app.getNavigationHelper().gotoContactPage();
+        app.goTo().gotoContactPage();
         List<ContactData> before = app.getContactHelper().getContactList();
         ContactData contact = new ContactData("firstName",
                                               null,
@@ -27,7 +27,7 @@ public class ContactCreationTest extends TestBase {
 
         app.getContactHelper().fillUserCreationForm(contact,true);
         app.getContactHelper().submitContactCreation();
-        app.getNavigationHelper().gotoContactPage();
+        app.goTo().gotoContactPage();
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(),before.size() + 1);
 
