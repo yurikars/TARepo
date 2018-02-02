@@ -1,41 +1,33 @@
 package stqa.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import stqa.addressbook.model.ContactData;
-import java.util.Comparator;
-import java.util.List;
+import stqa.addressbook.model.Contacts;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTest extends TestBase {
 
-    @Test (enabled = false)
-    public void testContactCreation () {
-
-        app.goTo().gotoContactPage();
-        List<ContactData> before = app.getContactHelper().getContactList();
-        ContactData contact = new ContactData("firstName",
-                                              null,
-                                              "lastName",
-                                              null,
-                                              null,
-                                              "listTest",
-                                              null,
-                                              null,
-                                              null,
-                                              null,
-                                              null);
-
-        app.getContactHelper().fillUserCreationForm(contact,true);
-        app.getContactHelper().submitContactCreation();
-        app.goTo().gotoContactPage();
-        List<ContactData> after = app.getContactHelper().getContactList();
-        Assert.assertEquals(after.size(),before.size() + 1);
-
-        before.add(contact);
-        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-        before.sort(byId);
-        after.sort(byId);
-        Assert.assertEquals(before,after);
+    @Test
+    public void testContactCreation() {
+        app.goTo().contactsListPage();
+        Contacts before = app.contact().all();
+        ContactData contact = new ContactData().
+                withFirstName("test1").
+                withLastName("test2").
+                withMiddleName("test3").
+                withMobilePhone("+375297770000").
+                withAddress("SomeAddress").
+                withCompanyName("Company Name").
+                withEmail("SomeMail").
+                withEmployment("SomeEmployment").
+                withGroup("SomeGroup");
+        app.contact().createContact(contact);
+        Contacts after = app.contact().all();
+        assertThat(after.size(), equalTo(before.size() + 1));
+        assertThat(after, equalTo(before.withAdded(contact.
+                withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
     }
 
 }

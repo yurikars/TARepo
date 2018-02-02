@@ -19,13 +19,21 @@ public class NavigationHelper extends HelperBase {
            click(By.linkText("groups"));
     }
 
-    public void gotoContactPage(){
+    public void contactsCreationPage(){
         if (isElementPresent(By.tagName("h1"))
                 && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
                 && isElementPresent(By.name("submit")) ){
             return;
         }
            click(By.linkText("add new"));
+    }
+
+    public void contactsListPage(){
+        if (isElementPresent(By.cssSelector("input[type='text']"))) {
+
+            return;
+        }
+        click(By.linkText("home"));
     }
     public void gotoHomePage(){
         if (isElementPresent(By.id("maintable"))){

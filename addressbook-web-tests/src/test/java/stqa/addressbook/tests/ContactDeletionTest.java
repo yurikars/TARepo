@@ -1,47 +1,41 @@
 package stqa.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import stqa.addressbook.model.ContactData;
+import stqa.addressbook.model.Contacts;
 
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactDeletionTest  extends TestBase  {
 
-    @Test (enabled = false)
-    public void testContactDeletion() throws InterruptedException {
+    @BeforeMethod
+    public void ensurePreconditions() {
+        app.goTo().contactsListPage();
+        if (app.contact().all().size() == 0) {
+            app.contact().createContact(new ContactData().
+                    withFirstName("test1").
+                    withLastName("test2").
+                    withMiddleName("test3").
+                    withMobilePhone("+375297770000").
+                    withAddress("SomeAddress").
+                    withCompanyName("Company Name").
+                    withEmail("SomeMail").
+                    withEmployment("SomeEmployment").
+                    withGroup("SomeGroup"));
+        }
+    }
 
-        app.goTo().gotoContactPage();
-        if (! app.getContactHelper().isThereAContact()){
-            app.getContactHelper().createContact((new ContactData(
-                            "Name",
-                            "MiddleName",
-                            "LastName",
-                            "nick",
-                            "guglius",
-                            "Bogota",
-                            "+375297776655",
-                            "noWork",
-                            "freelance",
-                            "some@mail.com",
-                            "test1")));
-            }
-        Thread.sleep(3000);
-        List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().selectContact(before.size() - 1);
-        app.getContactHelper().deleteContact();
-        app.getContactHelper().confirmContactDeletion();
-        app.getContactHelper().returnToHomePage();
-        List<ContactData> after = app.getContactHelper().getContactList();
+    @Test
+    public void testContactDeletion() {
+        Contacts before = app.contact().all();
+        ContactData deletedContact = before.iterator().next(); //Выбор первого попавшегося элемента множества
+        app.contact().deleteContact(deletedContact);
+        Contacts after = app.contact().all();
         Assert.assertEquals(after.size(), before.size() - 1);
-
-        before.remove(before.size() - 1);
-        Assert.assertEquals(before,after);
-
-//        Thread.sleep(3000);
-//        app.getContactHelper().selectContact();
-//        app.getContactHelper().deleteContact();
-//        app.getContactHelper().confirmContactDeletion();
+        assertThat(after, equalTo(before.without(deletedContact)));
     }
 
 }
